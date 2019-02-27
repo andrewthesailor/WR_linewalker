@@ -1,0 +1,7 @@
+PROJ 1
+
+co potrzeba:
+-czujnik koloru
+-motory do napędu 
+-centrala
+notki 
