@@ -21,12 +21,12 @@ def go_fwd() :
 
 
 def turn_right():
-    motorLeft.run_forever(speed_sp = )
-    motorRight.run_forever(speed_sp = )
+    motorLeft.run_forever(speed_sp = 200)
+    motorRight.run_forever(speed_sp = 100)
 
 def turn_left():
-    motorLeft.run_forever(speed_sp = )
-    motorRight.run_forever(speed_sp = )
+    motorLeft.run_forever(speed_sp = 100)
+    motorRight.run_forever(speed_sp = 200)
 
 
 def follow_the_line() :
@@ -44,12 +44,12 @@ def follow_the_line() :
 motorRight=LargeMotor(OUTPUT_A)
 motorLeft=LargeMotor(OUTPUT_B)
 
-colSenRight = ColorSensor(INPUT_1)
-colSenMid = ColorSensor(INPUT_2)
-colSenLeft = ColorSensor(INPUT_3)
+colSenRight = ColorSensor(INPUT_2)
+colSenMid = ColorSensor(INPUT_3)
+colSenLeft = ColorSensor(INPUT_4)
 
 
-ts = TouchSensor(INPUT_4)
+ts = TouchSensor(INPUT_1)
 
 
 while ts.is_pressed() == False :
