@@ -52,7 +52,7 @@ colSenLeft = ColorSensor(INPUT_4)
 ts = TouchSensor(INPUT_1)
 
 
-while ts.is_pressed() == False :
+while not ts.is_pressed() :
     follow_the_line()
 
 motorLeft.run_forever(speed_sp = 0)
