@@ -30,7 +30,9 @@ def turn_left():
 
 
 def follow_the_line() :
-    if is_line(colSenMid) :
+    if out_of_line:
+        print("out of bounds")
+    elif is_line(colSenMid) :
         go_fwd()
     elif is_turn_right() :
         turn_right()
