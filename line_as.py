@@ -11,7 +11,7 @@ def is_line(sensor) :
     return False
 
 def is_turn_right() :
-    if colSenRight.reflected_light_intensity < colSenLeft.reflected_light_intensity:
+    if colSenRight.reflected_light_intensity < 30:
         return True
     return False
 
@@ -22,10 +22,10 @@ def go_fwd() :
 
 def turn_right():
     motorLeft.run_forever(speed_sp = 200)
-    motorRight.run_forever(speed_sp = 100)
+    motorRight.run_forever(speed_sp = 0)
 
 def turn_left():
-    motorLeft.run_forever(speed_sp = 100)
+    motorLeft.run_forever(speed_sp = 0)
     motorRight.run_forever(speed_sp = 200)
 
 
@@ -34,7 +34,8 @@ def follow_the_line() :
         go_fwd()
     elif is_turn_right() :
         turn_right()
-    turn_left()
+    else :
+        turn_left()
 
 
 
@@ -52,7 +53,7 @@ colSenLeft = ColorSensor(INPUT_4)
 ts = TouchSensor(INPUT_1)
 
 
-while not ts.is_pressed() :
+while not ts.is_pressed :
     follow_the_line()
 
 motorLeft.run_forever(speed_sp = 0)
