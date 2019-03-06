@@ -11,15 +11,10 @@ import math
 def is_line() :
 
     if (colSenRight.reflected_light_intensity < 15) and (colSenLeft.reflected_light_intensity < 15) :
-        print("black")
         return True
     if (colSenRight.reflected_light_intensity > 20) and (colSenLeft.reflected_light_intensity > 20) :
-    	print("white")
     	return True
     else :
-    	print(colSenRight.reflected_light_intensity)
-    	print(colSenLeft.reflected_light_intensity)
-    	print("fuck")
     	return False
 
 def turn() :
@@ -34,18 +29,20 @@ def turn() :
 
 def go_fwd() :
 	print("gogogo")
-	tank_drive.on(fwd_pow,fwd_pow)
+	print(diff())
+	tank_drive.on(fwd_pow-(diff()),fwd_pow+(diff()))
+	resp=diff()/2
 #	motorLeft.on_for_seconds(70,0.1)
 #	motorRight.on_for_seconds(70,0.1)
 
 
 def turn_right():
 #	motorLeft.on_for_seconds(70,0.4)
-	tank_drive.on(turn_pow+10,-(turn_pow))
+	tank_drive.on(turn_pow+10,-turn_pow)
 
 def turn_left():
 #	motorRight.on_for_seconds(70,0.4)
-	tank_drive.on(-(turn_pow),turn_pow+10)
+	tank_drive.on(-turn_pow,turn_pow+10)
 
 def stop():
 		tank_drive.on(0.1,0.1)
@@ -54,6 +51,9 @@ def stop():
 
 #def out_of_line():
 #	return (not is_line(colSenMid)) and (not is_line(colSenRight)) and (not is_line(colSenLeft))
+
+def diff():
+	return (colSenRight.reflected_light_intensity-colSenLeft.reflected_light_intensity)/20
 
 def follow_the_line() :
 
@@ -69,9 +69,10 @@ def follow_the_line() :
 
 
 
-turn_pow=25
-fwd_pow=20
 
+turn_pow=22
+fwd_pow=20
+resp=0
 
 #motorRight=LargeMotor(OUTPUT_A)
 #motorLeft=LargeMotor(OUTPUT_B)
@@ -85,6 +86,7 @@ colSenLeft = ColorSensor(INPUT_4)
 ts = TouchSensor(INPUT_1)
 
 prevRight = 20
+
 
 print("starting destruction")
 while not ts.is_pressed :
