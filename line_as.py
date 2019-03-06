@@ -41,13 +41,14 @@ def follow_the_line() :
 
 
 
+motorRight=LargeMotor(OUTPUT_A)
+motorLeft=LargeMotor(OUTPUT_B)
 
-motorLeft=LargeMotor(OUTPUT_A)
-motorRight=LargeMotor(OUTPUT_B)
-
-colSenLeft = ColorSensor(INPUT_1)
+colSenRight = ColorSensor(INPUT_1)
 colSenMid = ColorSensor(INPUT_2)
-colSenRight = ColorSensor(INPUT_3)
+colSenLeft = ColorSensor(INPUT_3)
+
+
 ts = TouchSensor(INPUT_4)
 
 
