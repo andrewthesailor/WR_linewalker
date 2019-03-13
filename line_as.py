@@ -57,25 +57,41 @@ def stop():
 #def out_of_line():
 #	return (not is_line(colSenMid)) and (not is_line(colSenRight)) and (not is_line(colSenLeft))
 
-def diff():
-	return (colSenRight.reflected_light_intensity-colSenLeft.reflected_light_intensity)/20
+#def check_if_out():
+#	values = [colSenRight.reflected_light_intensity, colSenLeft.reflected_light_intensity, colSenMid.reflected_light_intensity]
+#	two_max = sorted(values)[:2]
+#	suma = sum(two_max)
+#	print(str(suma))
+#	if suma > 95:
+#		print("search for shit")
+#		return True
+#	else:
+#		return False
 
+def diff():
+	#return (colSenRight.reflected_light_intensity-colSenLeft.reflected_light_intensity)/20
+	return 0
 def follow_the_line() :
 
     #if out_of_line:
     #    print("out of bounds")
     if is_line() :
-        go_fwd()
+    	if colSenMid.reflected_light_intensity > 60:
+    		print(colSenMid.reflected_light_intensity)
+    		search_for_line()
+    	else:
+        	go_fwd()
     #else:
     #	stop()
     else:
     	turn() 
-	prevRight=colSenRight.reflected_light_intensity
-	prevLeft = colSenLeft.reflected_light_intensity
+#	prevRight=colSenRight.reflected_light_intensity
+#	prevLeft = colSenLeft.reflected_light_intensity
 
+def search_for_line():
+	tank_drive.on(turn_pow,-turn_pow)
 
-
-turn_pow=22
+turn_pow=25
 fwd_pow=20
 resp=0
 
@@ -96,6 +112,9 @@ prevLeft = 20
 
 print("starting destruction")
 while not ts.is_pressed :
-    follow_the_line()
+	#if check_if_out() :
+	#	search_for_line()
+	#else:
+	follow_the_line()
 
 stop()
