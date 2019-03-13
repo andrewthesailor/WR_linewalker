@@ -9,7 +9,6 @@ import math
 
 
 def is_line() :
-
     if (colSenRight.reflected_light_intensity < 15) and (colSenLeft.reflected_light_intensity < 15) :
         return True
     if (colSenRight.reflected_light_intensity > 20) and (colSenLeft.reflected_light_intensity > 20) :
@@ -26,10 +25,16 @@ def turn() :
 	if colSenLeft.reflected_light_intensity < 15:
 		print("turn left")
 		turn_left()
+	else:
+		turn_by_memory()
+	
+def turn_by_memory():
+	if prevRight < 15:
+		turn_right()
+	if prevLeft <15:
+		turn_left()
 
 def go_fwd() :
-	print("gogogo")
-	print(diff())
 	tank_drive.on(fwd_pow-(diff()),fwd_pow+(diff()))
 	resp=diff()/2
 #	motorLeft.on_for_seconds(70,0.1)
@@ -65,8 +70,8 @@ def follow_the_line() :
     #	stop()
     else:
     	turn() 
-    prevRight=colSenRight.reflected_light_intensity
-
+	prevRight=colSenRight.reflected_light_intensity
+	prevLeft = colSenLeft.reflected_light_intensity
 
 
 
@@ -86,6 +91,7 @@ colSenLeft = ColorSensor(INPUT_4)
 ts = TouchSensor(INPUT_1)
 
 prevRight = 20
+prevLeft = 20
 
 
 print("starting destruction")
