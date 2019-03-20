@@ -13,10 +13,8 @@ def is_line() :
 
 def turn() :
 	if colSenRight.reflected_light_intensity < 15:
-		print("turn right")
 		turn_right()
 	if colSenLeft.reflected_light_intensity < 15:
-		print("turn left")
 		turn_left()
 
 def go_fwd() :
@@ -26,7 +24,7 @@ def turn_right():
 
 def turn_left():
 
-	tank_drive.on(-turn_pow,turn_pow+8)
+	tank_drive.on(2-turn_pow,turn_pow+9)
 
 def stop():
 		tank_drive.on(0.1,0.1)
@@ -35,7 +33,6 @@ def follow_the_line() :
 
     if is_line() :
     	if colSenMid.reflected_light_intensity > 70:
-    		print(colSenMid.reflected_light_intensity)
     		search_for_line()
     	else:
         	go_fwd()
@@ -46,8 +43,8 @@ def follow_the_line() :
 def search_for_line():
 	tank_drive.on(turn_pow,-turn_pow)
 
-turn_pow=14
-fwd_pow=27
+turn_pow=17
+fwd_pow=29
 
 
 tank_drive = MoveTank(OUTPUT_A,OUTPUT_B)
