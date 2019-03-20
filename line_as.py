@@ -24,7 +24,7 @@ def turn_right():
 
 def turn_left():
 
-	tank_drive.on(2-turn_pow,turn_pow+9)
+	tank_drive.on(5-turn_pow,turn_pow+8)
 
 def stop():
 		tank_drive.on(0.1,0.1)
@@ -43,7 +43,7 @@ def follow_the_line() :
 def search_for_line():
 	tank_drive.on(turn_pow,-turn_pow)
 
-turn_pow=17
+turn_pow=16
 fwd_pow=29
 
 
