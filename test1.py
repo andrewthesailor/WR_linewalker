@@ -6,4 +6,5 @@ from ev3dev2.sensor.lego import ColorSensor
 colSenMid = ColorSensor(INPUT_3)
 
 while True:
-	print(colSenMid.hsv)
+	print(colSenMid.rgb)
+	#print(colSenMid.color)

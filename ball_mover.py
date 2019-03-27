@@ -83,13 +83,17 @@ inf.mode = 'IR-PROX'
 print("starting destruction")
 while True:
 	follow_the_line()
+	kolor = colSenMid.color
 	#niebieski = colSenMid.blue
-	#print(niebieski)
+	print(kolor)
 	if kolor == 5:
-		if not czyMaSkrecic(5):
+		if czyMaSkrecic(5):
+			break
+	elif kolor == 3:
+		if czyMaSkrecic(3):
 			break
 	elif kolor == 2:
-		if not czyMaSkrecic(2):
+		if czyMaSkrecic(2):
 			break
 
 stop()
