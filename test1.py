@@ -1,12 +1,9 @@
-from ev3dev2.motor import LargeMotor, OUTPUT_A, OUTPUT_B, SpeedPercent, MoveTank
-from ev3dev2.sensor import *
+#from ev3dev2.motor import MediumMotor, OUTPUT_C,SpeedPercent
+from ev3dev2.sensor import INPUT_1,INPUT_2,INPUT_3,INPUT_4
+#from ev3dev2.sensor.lego import InfraredSensor
 from ev3dev2.sensor.lego import ColorSensor
-from ev3dev2.led import Leds
-print("geronimo")
-colSen = ColorSensor(INPUT_1)
-m=LargeMotor(OUTPUT_A)
-while 1<2:
-    if colSen.reflected_light_intensity<50 :
-        m.run_forever(speed_sp=40)
-    else:
-        m.run_forever(speed_sp=0)
+
+colSenMid = ColorSensor(INPUT_3)
+
+while True:
+	print(colSenMid.hsv)
