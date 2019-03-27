@@ -48,16 +48,38 @@ def follow_the_line() :
     	turn() 
 
 
+
 def czyMaSkrecic(kolor):
-	if colSenRight.color == kolor:
-		print("Skręć w prawo")
-		return True
-	elif colSenLeft.color == kolor:
-		print("Skręć w lewo")
-		return True
-	else:
-		print("Coś poszło nie tak")
-		return False
+	if kolor is "Zielony":
+		if czyZielony(colSenRight):
+			print("Skręć w prawo")
+			return
+		elif czyZielony(colSenLeft):
+			print("Skręć w lewo")
+			return
+		else:
+			print("Błąd przy skręcaniu")
+			return
+	elif kolor is "Czerwony":
+		if czyCzerwony(colSenRight):
+			print("Skręć w prawo")
+			return
+		elif czyCzerwony(colSenLeft):
+			print("Skręć w lewo")
+			return
+		else:
+			print("Błąd przy skręcaniu")
+			return
+	elif kolor is "Niebieski":
+		if czyNiebieski(colSenRight):
+			print("Skręć w prawo")
+			return
+		elif czyNiebieski(colSenLeft):
+			print("Skręć w lewo")
+			return
+		else:
+			print("Błąd przy skręcaniu")
+			return
 
 
 #def search_for_line():
@@ -73,27 +95,66 @@ colSenRight = ColorSensor(INPUT_2)
 colSenMid = ColorSensor(INPUT_3)
 colSenLeft = ColorSensor(INPUT_4)
 
+czarny = (24, 30, 11)
+biały = (155, 200, 100)
+zielony = (30, 90, 20)
+niebieski = (34, 75, 60)
+czerwony = (140, 30 , 10)
+
+granica = 40
+
 #colSenMid.mode = 'COL-COLOR'
 
 
 inf = InfraredSensor(INPUT_1)
 inf.mode = 'IR-PROX'
 
+def czyZielony(sensor):
+	kolor = sensor.rgb
+	if abs(kolor[0]-zielony[0])+abs(kolor[1]-zielony[1])+abs(kolor[2]-zielony[2]) < granica:
+		return True
+	else:
+		return False
+
+def czyCzerwony(sensor):
+	kolor = sensor.rgb
+	if abs(kolor[0]-czerwony[0])+abs(kolor[1]-czerwony[1])+abs(kolor[2]-czerwony[2]) < granica:
+		return True
+	else:
+		return False
+
+def czyNiebieski(sensor):
+	kolor = sensor.rgb
+	if abs(kolor[0]-niebieski[0])+abs(kolor[1]-niebieski[1])+abs(kolor[2]-niebieski[2]) < granica:
+		return True
+	else:
+		return False
+
 
 print("starting destruction")
 while True:
 	follow_the_line()
-	kolor = colSenMid.color
-	#niebieski = colSenMid.blue
-	print(kolor)
-	if kolor == 5:
-		if czyMaSkrecic(5):
-			break
-	elif kolor == 3:
-		if czyMaSkrecic(3):
-			break
-	elif kolor == 2:
-		if czyMaSkrecic(2):
-			break
+
+	#Czarny
+	#if abs(kolor[0]-czarny[0])+abs(kolor[1]-czarny[1])+abs(kolor[2]-czarny[2]) < granica:
+	#	print("Czarny")
+	#Biały
+	#elif abs(kolor[0]-biały[0])+abs(kolor[1]-biały[1])+abs(kolor[2]-biały[2]) < granica:
+	#	print("Biały")
+	#Zielony
+	if czyZielony(colSenMid):
+		print("Zielony")
+		czyMaSkrecic("Zielony")
+		break
+	#Niebieski
+	elif czyNiebieski(colSenMid):
+		print("Niebieski")
+		czyMaSkrecic("Niebieski")
+		break
+	#Czerwony
+	elif czyCzerwony(colSenMid):
+		print("Czerwony")
+		czyMaSkrecic("Czerwony")
+		break
 
 stop()
